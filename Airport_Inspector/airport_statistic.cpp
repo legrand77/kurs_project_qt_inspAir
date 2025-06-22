@@ -150,8 +150,8 @@ void AirportStatistic::rcv_DataPerMonth(QSqlQueryModel* model) {
             int flights_count = model->record(i).value(0).toInt(); // значение записи о столбца
             QDate day_date = model->record(i).value(1).toDate(); // значение записи 1 столбца
 
-            qDebug()<<flights_count;// проверка значений
-            qDebug()<<model->record(i).value(1).toDate();
+            //qDebug()<<flights_count;// проверка значений
+            //qDebug()<<model->record(i).value(1).toDate();
 
 
             int day_number = day_date.day();

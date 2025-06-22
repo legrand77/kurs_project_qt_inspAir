@@ -82,8 +82,8 @@ void MainWindow::rcv_StatusRequest(QSqlError err) {
  */
 void MainWindow::rcv_Airports(QSqlQueryModel* model) {
     for (size_t i = 0; i < model->rowCount(); i++) {
-        ui->cb_Airports->addItem(model->data(model->index(i, 0)).toString());
-        airports[model->data(model->index(i, 0)).toString()] = model->data(model->index(i, 1)).toString();
+        ui->cb_Airports->addItem(model->record(i).value(0).toString());
+        airports[model->record(i).value(0).toString()] = model->record(i).value(1).toString();
     }
 
     ui->tv_MainWindow->setModel(model);
