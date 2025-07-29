@@ -153,16 +153,15 @@ void AirportStatistic::rcv_DataPerMonth(QSqlQueryModel* model) {
             //qDebug()<<flights_count;// проверка значений
             //qDebug()<<model->record(i).value(1).toDate();
 
-
             int day_number = day_date.day();
             int month_number = day_date.month();
 
-            if (!months_data->contains(month_number)) {
-                months_data->insert(month_number, QVector<QPointF>());
-            }
-
             QVector<QPointF>& data = months_data->operator[](month_number);
             data.append(QPointF(day_number, flights_count));
+
+            if (!months_data->contains(month_number)) {
+                months_data->insert(month_number, data);
+            }
 
         }
 
@@ -230,6 +229,7 @@ void AirportStatistic::on_pb_Close_clicked() {
  * @param index индекс месяца
  */
 void AirportStatistic::on_cb_Months_highlighted(int index) {
+    qDebug()<<index;
     int month = index + 1;
     UpdateMonthGraph(month);
 }
